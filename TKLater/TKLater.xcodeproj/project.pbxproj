@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		EAF4BF9D15582E4F00439F25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BF9C15582E4F00439F25 /* Foundation.framework */; };
-		EAF4BFA315582E4F00439F25 /* TKLater.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF4BFA215582E4F00439F25 /* TKLater.m */; };
+		EAF4BFA315582E4F00439F25 /* TKPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF4BFA215582E4F00439F25 /* TKPromise.m */; };
 		EAF4BFAB15582E4F00439F25 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BFAA15582E4F00439F25 /* SenTestingKit.framework */; };
 		EAF4BFAD15582E4F00439F25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BFAC15582E4F00439F25 /* UIKit.framework */; };
 		EAF4BFAE15582E4F00439F25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BF9C15582E4F00439F25 /* Foundation.framework */; };
 		EAF4BFB115582E4F00439F25 /* libTKLater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BF9915582E4F00439F25 /* libTKLater.a */; };
 		EAF4BFB715582E4F00439F25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAF4BFB515582E4F00439F25 /* InfoPlist.strings */; };
 		EAF4BFBA15582E4F00439F25 /* TKLaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF4BFB915582E4F00439F25 /* TKLaterTests.m */; };
+		EAF4BFEF155848EC00439F25 /* TKPromiseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF4BFEE155848EC00439F25 /* TKPromiseSpec.m */; };
+		EAF4BFF2155849D700439F25 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BFF1155849D700439F25 /* libKiwi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,8 +33,8 @@
 		EAF4BF9915582E4F00439F25 /* libTKLater.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTKLater.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF4BF9C15582E4F00439F25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EAF4BFA015582E4F00439F25 /* TKLater-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TKLater-Prefix.pch"; sourceTree = "<group>"; };
-		EAF4BFA115582E4F00439F25 /* TKLater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLater.h; sourceTree = "<group>"; };
-		EAF4BFA215582E4F00439F25 /* TKLater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLater.m; sourceTree = "<group>"; };
+		EAF4BFA115582E4F00439F25 /* TKPromise.h */ = {isa = PBXFileReference; path = TKPromise.h; sourceTree = "<group>"; };
+		EAF4BFA215582E4F00439F25 /* TKPromise.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPromise.m; sourceTree = "<group>"; };
 		EAF4BFA915582E4F00439F25 /* TKLaterTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TKLaterTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF4BFAA15582E4F00439F25 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EAF4BFAC15582E4F00439F25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -40,6 +42,8 @@
 		EAF4BFB615582E4F00439F25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EAF4BFB815582E4F00439F25 /* TKLaterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLaterTests.h; sourceTree = "<group>"; };
 		EAF4BFB915582E4F00439F25 /* TKLaterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLaterTests.m; sourceTree = "<group>"; };
+		EAF4BFEE155848EC00439F25 /* TKPromiseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPromiseSpec.m; sourceTree = "<group>"; };
+		EAF4BFF1155849D700439F25 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libKiwi.a; path = "../Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF4BFF2155849D700439F25 /* libKiwi.a in Frameworks */,
 				EAF4BFAB15582E4F00439F25 /* SenTestingKit.framework in Frameworks */,
 				EAF4BFAD15582E4F00439F25 /* UIKit.framework in Frameworks */,
 				EAF4BFAE15582E4F00439F25 /* Foundation.framework in Frameworks */,
@@ -90,6 +95,7 @@
 				EAF4BF9C15582E4F00439F25 /* Foundation.framework */,
 				EAF4BFAA15582E4F00439F25 /* SenTestingKit.framework */,
 				EAF4BFAC15582E4F00439F25 /* UIKit.framework */,
+				EAF4BFF1155849D700439F25 /* libKiwi.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -97,8 +103,8 @@
 		EAF4BF9E15582E4F00439F25 /* TKLater */ = {
 			isa = PBXGroup;
 			children = (
-				EAF4BFA115582E4F00439F25 /* TKLater.h */,
-				EAF4BFA215582E4F00439F25 /* TKLater.m */,
+				EAF4BFA115582E4F00439F25 /* TKPromise.h */,
+				EAF4BFA215582E4F00439F25 /* TKPromise.m */,
 				EAF4BF9F15582E4F00439F25 /* Supporting Files */,
 			);
 			path = TKLater;
@@ -117,6 +123,7 @@
 			children = (
 				EAF4BFB815582E4F00439F25 /* TKLaterTests.h */,
 				EAF4BFB915582E4F00439F25 /* TKLaterTests.m */,
+				EAF4BFEE155848EC00439F25 /* TKPromiseSpec.m */,
 				EAF4BFB315582E4F00439F25 /* Supporting Files */,
 			);
 			path = TKLaterTests;
@@ -240,7 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAF4BFA315582E4F00439F25 /* TKLater.m in Sources */,
+				EAF4BFA315582E4F00439F25 /* TKPromise.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAF4BFBA15582E4F00439F25 /* TKLaterTests.m in Sources */,
+				EAF4BFEF155848EC00439F25 /* TKPromiseSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,15 +328,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/TKLater.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../gh-unit/Project-iOS/build/Framework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKLater/TKLater-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -336,15 +342,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/TKLater.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../gh-unit/Project-iOS/build/Framework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKLater/TKLater-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
@@ -354,12 +358,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(SRCROOT)/../gh-unit/Project-iOS/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKLater/TKLater-Prefix.pch";
 				INFOPLIST_FILE = "TKLaterTests/TKLaterTests-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/KiwiPublicHeaders";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -370,12 +375,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(SRCROOT)/../gh-unit/Project-iOS/build/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TKLater/TKLater-Prefix.pch";
 				INFOPLIST_FILE = "TKLaterTests/TKLaterTests-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/KiwiPublicHeaders";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -399,6 +405,7 @@
 				EAF4BFBF15582E4F00439F25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EAF4BFC015582E4F00439F25 /* Build configuration list for PBXNativeTarget "TKLaterTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +414,7 @@
 				EAF4BFC215582E4F00439F25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
