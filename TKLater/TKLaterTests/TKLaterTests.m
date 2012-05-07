@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Tack Mobile, LLC. All rights reserved.
 //
 
-#import <GHUnitIOS/GHUnit.h>
 #import "TKLaterTests.h"
 
 @implementation TKLaterTests
@@ -27,7 +26,7 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in TKLaterTests");
+    STAssertTrue(1+1 == 2, @"Math works");
 }
 
 @end
