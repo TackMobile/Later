@@ -18,7 +18,7 @@ describe(@"A Promise", ^{
         [[promiseClass should] beNonNil];
     });
     
-    context(@"with a list of commitments to keep", ^{
+    context(@"with two commitments to keep", ^{
         
         __block TKPromise *promise = nil;
         NSString *firstCommitment = @"first commitment";
@@ -43,7 +43,7 @@ describe(@"A Promise", ^{
                 [promise keepCommitment:firstCommitment];
             });
             
-            it(@"should know that those commitments have been kept", ^{
+            it(@"should know that that commitment has been kept", ^{
                 BOOL firstCommitmentKept = [promise isCommitmentKept:firstCommitment];
                 [[theValue(firstCommitmentKept) should] beYes];
             });
