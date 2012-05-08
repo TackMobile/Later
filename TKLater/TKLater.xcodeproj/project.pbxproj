@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA8ACE6B1559776900AF1C8F /* TKPromiseKeepingSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = EA8ACE6A1559776900AF1C8F /* TKPromiseKeepingSpec.m */; };
+		EA8ACE6C15597B4800AF1C8F /* TKPromiseKeepingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8ACE6A1559776900AF1C8F /* TKPromiseKeepingSpec.m */; };
 		EAF4BF9D15582E4F00439F25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BF9C15582E4F00439F25 /* Foundation.framework */; };
 		EAF4BFA315582E4F00439F25 /* TKPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF4BFA215582E4F00439F25 /* TKPromise.m */; };
 		EAF4BFAB15582E4F00439F25 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BFAA15582E4F00439F25 /* SenTestingKit.framework */; };
@@ -29,10 +31,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA8ACE6A1559776900AF1C8F /* TKPromiseKeepingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPromiseKeepingSpec.m; sourceTree = "<group>"; };
 		EAF4BF9915582E4F00439F25 /* libTKLater.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTKLater.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF4BF9C15582E4F00439F25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EAF4BFA015582E4F00439F25 /* TKLater-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TKLater-Prefix.pch"; sourceTree = "<group>"; };
-		EAF4BFA115582E4F00439F25 /* TKPromise.h */ = {isa = PBXFileReference; path = TKPromise.h; sourceTree = "<group>"; };
+		EAF4BFA115582E4F00439F25 /* TKPromise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPromise.h; sourceTree = "<group>"; };
 		EAF4BFA215582E4F00439F25 /* TKPromise.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPromise.m; sourceTree = "<group>"; };
 		EAF4BFA915582E4F00439F25 /* TKLaterTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TKLaterTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF4BFAA15582E4F00439F25 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -40,7 +43,7 @@
 		EAF4BFB415582E4F00439F25 /* TKLaterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TKLaterTests-Info.plist"; sourceTree = "<group>"; };
 		EAF4BFB615582E4F00439F25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EAF4BFEE155848EC00439F25 /* TKPromiseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPromiseSpec.m; sourceTree = "<group>"; };
-		EAF4BFF1155849D700439F25 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libKiwi.a; path = "../Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
+		EAF4BFF1155849D700439F25 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "../Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				EAF4BFEE155848EC00439F25 /* TKPromiseSpec.m */,
+				EA8ACE6A1559776900AF1C8F /* TKPromiseKeepingSpec.m */,
 				EAF4BFB315582E4F00439F25 /* Supporting Files */,
 			);
 			path = TKLaterTests;
@@ -216,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAF4BFB715582E4F00439F25 /* InfoPlist.strings in Resources */,
+				EA8ACE6B1559776900AF1C8F /* TKPromiseKeepingSpec.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAF4BFEF155848EC00439F25 /* TKPromiseSpec.m in Sources */,
+				EA8ACE6C15597B4800AF1C8F /* TKPromiseKeepingSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

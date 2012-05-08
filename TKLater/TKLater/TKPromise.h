@@ -8,15 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^TKPromiseKeptBlock)();
+typedef void (^TKPromiseFailedBlock)();
+
 @interface TKPromise : NSObject {
+    TKPromiseKeptBlock promiseKeptBlock;
+    TKPromiseFailedBlock promiseFailedBlock;
     NSMutableArray *commitments;
     NSMutableArray *keptCommitments;
 }
 
-- (id) initWithCommitments:(NSString *)aCommitment, ... NS_REQUIRES_NIL_TERMINATION;
+- (id) initWithPromiseKeptBlock:(TKPromiseKeptBlock)promiseKeptBlock
+             promiseFailedBlock:(TKPromiseFailedBlock)promiseFailedBlock
+                    commitments:(NSString *)aCommitment, ... NS_REQUIRES_NIL_TERMINATION;
 
 - (BOOL) isCommittedTo:(NSString *)commitment;
 - (BOOL) isCommitmentKept:(NSString *)commitment;
+- (BOOL) isKept;
+- (NSInteger) countOfCommitmentsKept;
+- (NSInteger) countOfCommitmentsToKeep;
 - (void) keepCommitment:(NSString *)commitment;
 
 @end

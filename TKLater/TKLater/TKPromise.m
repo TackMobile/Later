@@ -8,9 +8,15 @@
 
 #import "TKPromise.h"
 
+@interface TKPromise (Private)
+- (void) attemptToKeep;
+@end
+
 @implementation TKPromise
 
-- (id) initWithCommitments:(NSString *)aCommitment, ... {
+- (id) initWithPromiseKeptBlock:(TKPromiseKeptBlock)pkb
+             promiseFailedBlock:(TKPromiseFailedBlock)pfb
+                    commitments:(NSString *)aCommitment, ... {
     if (self = [super init]) {
         commitments = [NSMutableArray array];
         
@@ -22,8 +28,12 @@
         va_end(commitmentArgs);
         
         keptCommitments = [NSMutableArray arrayWithCapacity:[commitments count]];
+        
+        promiseKeptBlock = pkb;
+        promiseFailedBlock = pfb;
     }
     return self;
+
 }
 
 - (BOOL) isCommittedTo:(NSString *)commitment {
@@ -34,8 +44,27 @@
     return [keptCommitments containsObject:commitment];
 }
 
+- (BOOL) isKept {
+    return [commitments count] == [keptCommitments count];
+}
+
+- (NSInteger) countOfCommitmentsKept {
+    return [keptCommitments count];
+}
+
+- (NSInteger) countOfCommitmentsToKeep {
+    return [commitments count] - [keptCommitments count];
+}
+
 - (void) keepCommitment:(NSString *)commitment {
     [keptCommitments addObject:commitment];
+    [self attemptToKeep];
+}
+
+- (void) attemptToKeep {
+    if ([self isKept]) {
+        promiseKeptBlock();
+    }
 }
 
 @end

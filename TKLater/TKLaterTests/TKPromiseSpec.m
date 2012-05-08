@@ -18,38 +18,59 @@ describe(@"A Promise", ^{
         [[promiseClass should] beNonNil];
     });
     
-    context(@"with two commitments to keep", ^{
-        
-        __block TKPromise *promise = nil;
-        NSString *firstCommitment = @"first commitment";
-        NSString *secondCommitment = @"second commitment";
+    describe(@"with its informational API", ^{
     
-        beforeEach(^{
+        context(@"with two commitments to keep", ^{
             
-            promise = [[TKPromise alloc] initWithCommitments:firstCommitment, secondCommitment, nil];
+            __block TKPromise *promise = nil;
+            NSString *firstCommitment = @"first commitment";
+            NSString *secondCommitment = @"second commitment";
         
-        });
-        
-        it(@"should know if it's commited to a given commitment", ^{
-            
-            BOOL committedToFirstCommitment = [promise isCommittedTo:firstCommitment];
-            [[theValue(committedToFirstCommitment) should] beYes];
-            
-        });
-        
-        context(@"and one commitment kept", ^{
-            
             beforeEach(^{
-                [promise keepCommitment:firstCommitment];
+                
+                promise = [[TKPromise alloc] initWithPromiseKeptBlock:NULL
+                                                   promiseFailedBlock:NULL
+                                                          commitments:firstCommitment, secondCommitment, nil];
+            
             });
             
-            it(@"should know that that commitment has been kept", ^{
-                BOOL firstCommitmentKept = [promise isCommitmentKept:firstCommitment];
-                [[theValue(firstCommitmentKept) should] beYes];
+            it(@"should know that the promise is not kept yet", ^{
+                BOOL promiseIsKept = [promise isKept];
+                [[theValue(promiseIsKept) should] equal:theValue(NO)];
             });
-        
+            
+            it(@"should know if it's commited to a given commitment", ^{
+                
+                BOOL committedToFirstCommitment = [promise isCommittedTo:firstCommitment];
+                [[theValue(committedToFirstCommitment) should] beYes];
+                
+            });
+            
+            context(@"and one commitment kept", ^{
+                
+                beforeEach(^{
+                    [promise keepCommitment:firstCommitment];
+                });
+                
+                it(@"should know that that commitment has been kept", ^{
+                    BOOL firstCommitmentKept = [promise isCommitmentKept:firstCommitment];
+                    [[theValue(firstCommitmentKept) should] beYes];
+
+                    BOOL secondCommitmentKept = [promise isCommitmentKept:secondCommitment];
+                    [[theValue(secondCommitmentKept) should] beNo];
+                });
+                
+                it(@"should know how many commitments have been kept", ^{
+                    NSInteger commitmentsKept = [promise countOfCommitmentsKept];
+                    [[theValue(commitmentsKept) should] equal:theValue(1)];
+                    
+                    NSInteger commitmentsToKeep = [promise countOfCommitmentsToKeep];
+                    [[theValue(commitmentsToKeep) should] equal:theValue(1)];
+                });
+                
+            });
+            
         });
-    
     });
 
 });
