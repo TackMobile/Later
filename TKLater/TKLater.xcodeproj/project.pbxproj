@@ -14,7 +14,6 @@
 		EAF4BFAE15582E4F00439F25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BF9C15582E4F00439F25 /* Foundation.framework */; };
 		EAF4BFB115582E4F00439F25 /* libTKLater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BF9915582E4F00439F25 /* libTKLater.a */; };
 		EAF4BFB715582E4F00439F25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAF4BFB515582E4F00439F25 /* InfoPlist.strings */; };
-		EAF4BFBA15582E4F00439F25 /* TKLaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF4BFB915582E4F00439F25 /* TKLaterTests.m */; };
 		EAF4BFEF155848EC00439F25 /* TKPromiseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF4BFEE155848EC00439F25 /* TKPromiseSpec.m */; };
 		EAF4BFF2155849D700439F25 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BFF1155849D700439F25 /* libKiwi.a */; };
 /* End PBXBuildFile section */
@@ -40,8 +39,6 @@
 		EAF4BFAC15582E4F00439F25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		EAF4BFB415582E4F00439F25 /* TKLaterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TKLaterTests-Info.plist"; sourceTree = "<group>"; };
 		EAF4BFB615582E4F00439F25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EAF4BFB815582E4F00439F25 /* TKLaterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLaterTests.h; sourceTree = "<group>"; };
-		EAF4BFB915582E4F00439F25 /* TKLaterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLaterTests.m; sourceTree = "<group>"; };
 		EAF4BFEE155848EC00439F25 /* TKPromiseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPromiseSpec.m; sourceTree = "<group>"; };
 		EAF4BFF1155849D700439F25 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libKiwi.a; path = "../Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,8 +118,6 @@
 		EAF4BFB215582E4F00439F25 /* TKLaterTests */ = {
 			isa = PBXGroup;
 			children = (
-				EAF4BFB815582E4F00439F25 /* TKLaterTests.h */,
-				EAF4BFB915582E4F00439F25 /* TKLaterTests.m */,
 				EAF4BFEE155848EC00439F25 /* TKPromiseSpec.m */,
 				EAF4BFB315582E4F00439F25 /* Supporting Files */,
 			);
@@ -255,7 +250,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAF4BFBA15582E4F00439F25 /* TKLaterTests.m in Sources */,
 				EAF4BFEF155848EC00439F25 /* TKPromiseSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
