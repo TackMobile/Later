@@ -82,7 +82,7 @@ describe(@"A Promise", ^{
         
         it(@"should execute the failure block when one commitment fails", ^{
             [promise failCommitment:promiseA];
-            //[[expectFutureValue(promiseCompleteValue) shouldEventually] equal:@"Promise failed"];
+            [[expectFutureValue(promiseCompleteValue) shouldEventually] equal:@"Promise failed"];
             
         });
         

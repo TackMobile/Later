@@ -83,6 +83,7 @@
     [self raiseIfAlreadyFailed:commitment];
     [self raiseIfAlreadyKept:commitment];
     [failedCommitments addObject:commitment];
+    [self commitmentFailed];
 }
 
 - (void) raiseIfAlreadyKept:(NSString *)commitment {
@@ -100,7 +101,7 @@
 }
 
 - (void) commitmentFailed {
-    
+    if (promiseFailedBlock) promiseFailedBlock();
 }
 
 - (void) attemptToKeep {
