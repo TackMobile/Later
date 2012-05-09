@@ -45,6 +45,10 @@
     return [keptCommitments containsObject:commitment];
 }
 
+- (BOOL) isCommitmentFailed:(NSString *)commitment {
+    return [failedCommitments containsObject:commitment];
+}
+
 - (BOOL) isKept {
     return [commitments count] == [keptCommitments count];
 }

@@ -61,6 +61,12 @@ describe(@"A Promise", ^{
                     [promise failCommitment:firstCommitment];
                 });
                 
+                it(@"should know that the commitment has failed", ^{
+                    BOOL isFailed = [promise isCommitmentFailed:firstCommitment];
+                    [[theValue(isFailed) should] equal:theValue(YES)];
+                    
+                });
+                
                 it(@"should know that the promise has failed", ^{
                     BOOL isFailed = [promise isFailed];
                     [[theValue(isFailed) should] equal:theValue(YES)];

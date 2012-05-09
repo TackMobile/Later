@@ -25,6 +25,7 @@ typedef void (^TKPromiseFailedBlock)();
 
 - (BOOL) isCommittedTo:(NSString *)commitment;
 - (BOOL) isCommitmentKept:(NSString *)commitment;
+- (BOOL) isCommitmentFailed:(NSString *)commitment;
 - (BOOL) isKept;
 - (BOOL) isFailed;
 - (NSInteger) countOfCommitmentsKept;
