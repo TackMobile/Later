@@ -16,6 +16,7 @@ typedef void (^TKPromiseFailedBlock)();
     TKPromiseFailedBlock promiseFailedBlock;
     NSMutableArray *commitments;
     NSMutableArray *keptCommitments;
+    NSMutableSet *failedCommitments;
 }
 
 - (id) initWithPromiseKeptBlock:(TKPromiseKeptBlock)promiseKeptBlock
@@ -25,8 +26,10 @@ typedef void (^TKPromiseFailedBlock)();
 - (BOOL) isCommittedTo:(NSString *)commitment;
 - (BOOL) isCommitmentKept:(NSString *)commitment;
 - (BOOL) isKept;
+- (BOOL) isFailed;
 - (NSInteger) countOfCommitmentsKept;
 - (NSInteger) countOfCommitmentsToKeep;
 - (void) keepCommitment:(NSString *)commitment;
+- (void) failCommitment:(NSString *)commitment;
 
 @end

@@ -28,6 +28,7 @@
         va_end(commitmentArgs);
         
         keptCommitments = [NSMutableArray arrayWithCapacity:[commitments count]];
+        failedCommitments = [NSMutableSet setWithCapacity:[commitments count]];
         
         promiseKeptBlock = pkb;
         promiseFailedBlock = pfb;
@@ -48,6 +49,10 @@
     return [commitments count] == [keptCommitments count];
 }
 
+- (BOOL) isFailed {
+    return [failedCommitments count] > 0;
+}
+
 - (NSInteger) countOfCommitmentsKept {
     return [keptCommitments count];
 }
@@ -59,6 +64,10 @@
 - (void) keepCommitment:(NSString *)commitment {
     [keptCommitments addObject:commitment];
     [self attemptToKeep];
+}
+
+- (void) failCommitment:(NSString *)commitment {
+    [failedCommitments addObject:commitment];
 }
 
 - (void) attemptToKeep {

@@ -35,8 +35,17 @@ describe(@"A Promise", ^{
             });
             
             it(@"should know that the promise is not kept yet", ^{
+                
                 BOOL promiseIsKept = [promise isKept];
                 [[theValue(promiseIsKept) should] equal:theValue(NO)];
+                
+            });
+            
+            it(@"should know that the promise is not failed yet", ^{
+                
+                BOOL promiseIsFailed = [promise isFailed];
+                [[theValue(promiseIsFailed) should] equal:theValue(NO)];
+                
             });
             
             it(@"should know if it's commited to a given commitment", ^{
@@ -44,6 +53,19 @@ describe(@"A Promise", ^{
                 BOOL committedToFirstCommitment = [promise isCommittedTo:firstCommitment];
                 [[theValue(committedToFirstCommitment) should] beYes];
                 
+            });
+            
+            context(@"and one commitment failed", ^{
+                
+                beforeEach(^{
+                    [promise failCommitment:firstCommitment];
+                });
+                
+                it(@"should know that the promise has failed", ^{
+                    BOOL isFailed = [promise isFailed];
+                    [[theValue(isFailed) should] equal:theValue(YES)];
+                    
+                });
             });
             
             context(@"and one commitment kept", ^{
