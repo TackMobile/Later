@@ -14,7 +14,7 @@ SPEC_BEGIN(TKPromiseFailedSpec)
 describe(@"A Promise", ^{
     
     __block TKPromise *promise = nil;
-    __block NSString *promiseCompleteValue = nil;
+    __block NSNumber *promiseCompleteValue = nil;
     NSString *promiseA = @"A";
     NSString *promiseB = @"B";
     
@@ -71,8 +71,11 @@ describe(@"A Promise", ^{
     context(@"with a promise failed block", ^{
         
         beforeEach(^{
+            __block NSUInteger callCount = 0;
+
             TKPromiseFailedBlock promiseFailed = ^{
-                promiseCompleteValue = @"Promise failed";
+                callCount++;
+                promiseCompleteValue = [NSNumber numberWithInt:callCount];
             };
             
             promise = [[TKPromise alloc] initWithPromiseKeptBlock:NULL
@@ -82,7 +85,14 @@ describe(@"A Promise", ^{
         
         it(@"should execute the failure block when one commitment fails", ^{
             [promise failCommitment:promiseA];
-            [[expectFutureValue(promiseCompleteValue) shouldEventually] equal:@"Promise failed"];
+            [[expectFutureValue(promiseCompleteValue) shouldEventually] equal:[NSNumber numberWithInt:1]];
+            
+        });
+        
+        it(@"should execute the failure block only once when more than one commitment fails", ^{
+            [promise failCommitment:promiseA];
+            [promise failCommitment:promiseB];
+            [[expectFutureValue(promiseCompleteValue) shouldEventually] equal:[NSNumber numberWithInt:1]];
             
         });
         

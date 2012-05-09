@@ -101,7 +101,11 @@
 }
 
 - (void) commitmentFailed {
-    if (promiseFailedBlock) promiseFailedBlock();
+    // Failure block should only be called once.
+    // The assumption is that this is not the first failure, the failure block has already been called.
+    if ([self countOfCommitmentsFailed] == 1) { 
+        if (promiseFailedBlock) promiseFailedBlock();
+    }
 }
 
 - (void) attemptToKeep {
