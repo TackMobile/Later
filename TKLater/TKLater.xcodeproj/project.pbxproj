@@ -10,6 +10,8 @@
 		EA8ACE6B1559776900AF1C8F /* TKPromiseKeepingSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = EA8ACE6A1559776900AF1C8F /* TKPromiseKeepingSpec.m */; };
 		EA8ACE6C15597B4800AF1C8F /* TKPromiseKeepingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8ACE6A1559776900AF1C8F /* TKPromiseKeepingSpec.m */; };
 		EA8ACE6E1559C0A800AF1C8F /* TKPromiseFailingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8ACE6D1559C0A800AF1C8F /* TKPromiseFailingSpec.m */; };
+		EA8ACE70155B1DED00AF1C8F /* TKPromiseErrorsSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = EA8ACE6F155B1DED00AF1C8F /* TKPromiseErrorsSpec.m */; };
+		EA8ACE71155B1E4200AF1C8F /* TKPromiseErrorsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8ACE6F155B1DED00AF1C8F /* TKPromiseErrorsSpec.m */; };
 		EAF4BF9D15582E4F00439F25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BF9C15582E4F00439F25 /* Foundation.framework */; };
 		EAF4BFA315582E4F00439F25 /* TKPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF4BFA215582E4F00439F25 /* TKPromise.m */; };
 		EAF4BFAB15582E4F00439F25 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF4BFAA15582E4F00439F25 /* SenTestingKit.framework */; };
@@ -34,6 +36,7 @@
 /* Begin PBXFileReference section */
 		EA8ACE6A1559776900AF1C8F /* TKPromiseKeepingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPromiseKeepingSpec.m; sourceTree = "<group>"; };
 		EA8ACE6D1559C0A800AF1C8F /* TKPromiseFailingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPromiseFailingSpec.m; sourceTree = "<group>"; };
+		EA8ACE6F155B1DED00AF1C8F /* TKPromiseErrorsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPromiseErrorsSpec.m; sourceTree = "<group>"; };
 		EAF4BF9915582E4F00439F25 /* libTKLater.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTKLater.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF4BF9C15582E4F00439F25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EAF4BFA015582E4F00439F25 /* TKLater-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TKLater-Prefix.pch"; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 				EAF4BFEE155848EC00439F25 /* TKPromiseSpec.m */,
 				EA8ACE6A1559776900AF1C8F /* TKPromiseKeepingSpec.m */,
 				EA8ACE6D1559C0A800AF1C8F /* TKPromiseFailingSpec.m */,
+				EA8ACE6F155B1DED00AF1C8F /* TKPromiseErrorsSpec.m */,
 				EAF4BFB315582E4F00439F25 /* Supporting Files */,
 			);
 			path = TKLaterTests;
@@ -224,6 +228,7 @@
 			files = (
 				EAF4BFB715582E4F00439F25 /* InfoPlist.strings in Resources */,
 				EA8ACE6B1559776900AF1C8F /* TKPromiseKeepingSpec.m in Resources */,
+				EA8ACE70155B1DED00AF1C8F /* TKPromiseErrorsSpec.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +266,7 @@
 				EAF4BFEF155848EC00439F25 /* TKPromiseSpec.m in Sources */,
 				EA8ACE6C15597B4800AF1C8F /* TKPromiseKeepingSpec.m in Sources */,
 				EA8ACE6E1559C0A800AF1C8F /* TKPromiseFailingSpec.m in Sources */,
+				EA8ACE71155B1E4200AF1C8F /* TKPromiseErrorsSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

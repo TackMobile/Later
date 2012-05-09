@@ -18,56 +18,6 @@ describe(@"A Promise", ^{
     NSString *promiseA = @"A";
     NSString *promiseB = @"B";
     
-    context(@"with one commitment", ^{
-        
-        beforeEach(^{
-            promise = [[TKPromise alloc] initWithPromiseKeptBlock:NULL
-                                               promiseFailedBlock:NULL
-                                                      commitments:promiseA, nil];
-        });
-        
-        it(@"should throw an error if keeping a commitment that has already been kept", ^{
-            [promise keepCommitment:promiseA];
-            void(^secondKeep)() = ^{
-                [promise keepCommitment:promiseA];
-            };
-            [[theBlock(secondKeep) should] raiseWithName:kTKPromiseCommitmentAlreadyKeptError
-                                                  reason:[NSString stringWithFormat:@"Commitment '%@' has already been kept", promiseA]];
-            
-        });
-        
-        it(@"should throw an error if failing a commitment that has already been failed", ^{
-            [promise failCommitment:promiseA];
-            void(^secondFail)() = ^{
-                [promise failCommitment:promiseA];
-            };
-            [[theBlock(secondFail) should] raiseWithName:kTKPromiseCommitmentAlreadyFailedError
-                                                  reason:[NSString stringWithFormat:@"Commitment '%@' has already failed", promiseA]];
-            
-        });
-        
-        it(@"should throw an error if keeping a commitment that has already failed", ^{
-            [promise failCommitment:promiseA];
-            void(^keepAttempt)() = ^{
-                [promise keepCommitment:promiseA];
-            };
-            [[theBlock(keepAttempt) should] raiseWithName:kTKPromiseCommitmentAlreadyFailedError
-                                                  reason:[NSString stringWithFormat:@"Commitment '%@' has already failed", promiseA]];
-            
-        });
-        
-        it(@"should throw an error if failing a commitment that has already been kept", ^{
-            [promise keepCommitment:promiseA];
-            void(^failAttempt)() = ^{
-                [promise failCommitment:promiseA];
-            };
-            [[theBlock(failAttempt) should] raiseWithName:kTKPromiseCommitmentAlreadyKeptError
-                                                   reason:[NSString stringWithFormat:@"Commitment '%@' has already been kept", promiseA]];
-            
-        });
-        
-    });
-  
     context(@"with a promise failed block", ^{
         
         beforeEach(^{

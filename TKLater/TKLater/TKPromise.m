@@ -12,6 +12,7 @@
 - (void) attemptToKeep;
 - (void) raiseIfAlreadyKept:(NSString *)commitment;
 - (void) raiseIfAlreadyFailed:(NSString *)commitment;
+- (void) raiseIfNeverCommittedTo:(NSString *)commitment;
 - (void) commitmentFailed;
 @end
 
@@ -73,6 +74,7 @@
 }
 
 - (void) keepCommitment:(NSString *)commitment {
+    [self raiseIfNeverCommittedTo:commitment];
     [self raiseIfAlreadyKept:commitment];
     [self raiseIfAlreadyFailed:commitment];
     [keptCommitments addObject:commitment];
@@ -80,6 +82,7 @@
 }
 
 - (void) failCommitment:(NSString *)commitment {
+    [self raiseIfNeverCommittedTo:commitment];
     [self raiseIfAlreadyFailed:commitment];
     [self raiseIfAlreadyKept:commitment];
     [failedCommitments addObject:commitment];
@@ -98,6 +101,13 @@
         [NSException raise:kTKPromiseCommitmentAlreadyFailedError
                     format:[NSString stringWithFormat:@"Commitment '%@' has already failed", commitment]];
     }   
+}
+
+- (void) raiseIfNeverCommittedTo:(NSString *)commitment {
+    if (![self isCommittedTo:commitment]) {
+        [NSException raise:kTKPromiseNoSuchCommitmentError
+                    format:[NSString stringWithFormat:@"Never committed to '%@'", commitment]];
+    }
 }
 
 - (void) commitmentFailed {
