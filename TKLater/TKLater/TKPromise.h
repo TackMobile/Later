@@ -33,6 +33,7 @@ typedef void (^TKPromiseFailedBlock)();
 - (BOOL) isKept;
 - (BOOL) isFailed;
 - (NSInteger) countOfCommitmentsKept;
+- (NSInteger) countOfCommitmentsFailed;
 - (NSInteger) countOfCommitmentsToKeep;
 - (void) keepCommitment:(NSString *)commitment;
 - (void) failCommitment:(NSString *)commitment;

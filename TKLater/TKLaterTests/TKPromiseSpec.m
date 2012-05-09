@@ -75,6 +75,15 @@ describe(@"A Promise", ^{
                     [[theValue(isFailed) should] equal:theValue(YES)];
                     
                 });
+                
+                it(@"should know how many commitments have failed", ^{
+                    NSInteger commitmentsFailed = [promise countOfCommitmentsFailed];
+                    [[theValue(commitmentsFailed) should] equal:theValue(1)];
+                    
+                    NSInteger commitmentsToKeep = [promise countOfCommitmentsToKeep];
+                    [[theValue(commitmentsToKeep) should] equal:theValue(1)];
+                });
+
             });
             
             context(@"and one commitment kept", ^{

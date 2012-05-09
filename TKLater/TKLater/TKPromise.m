@@ -64,8 +64,12 @@
     return [keptCommitments count];
 }
 
+- (NSInteger) countOfCommitmentsFailed {
+    return [failedCommitments count];
+}
+
 - (NSInteger) countOfCommitmentsToKeep {
-    return [commitments count] - [keptCommitments count];
+    return [commitments count] - [keptCommitments count] - [failedCommitments count];
 }
 
 - (void) keepCommitment:(NSString *)commitment {
