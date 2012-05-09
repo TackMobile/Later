@@ -10,6 +10,9 @@
 
 @interface TKPromise (Private)
 - (void) attemptToKeep;
+- (void) raiseIfAlreadyKept:(NSString *)commitment;
+- (void) raiseIfAlreadyFailed:(NSString *)commitment;
+- (void) commitmentFailed;
 @end
 
 @implementation TKPromise
@@ -66,17 +69,39 @@
 }
 
 - (void) keepCommitment:(NSString *)commitment {
+    [self raiseIfAlreadyKept:commitment];
+    [self raiseIfAlreadyFailed:commitment];
     [keptCommitments addObject:commitment];
     [self attemptToKeep];
 }
 
 - (void) failCommitment:(NSString *)commitment {
+    [self raiseIfAlreadyFailed:commitment];
+    [self raiseIfAlreadyKept:commitment];
     [failedCommitments addObject:commitment];
+}
+
+- (void) raiseIfAlreadyKept:(NSString *)commitment {
+    if ([self isCommitmentKept:commitment]) {
+        [NSException raise:kTKPromiseCommitmentAlreadyKeptError
+                    format:[NSString stringWithFormat:@"Commitment '%@' has already been kept", commitment]];
+    }
+}
+
+- (void) raiseIfAlreadyFailed:(NSString *)commitment {
+    if ([self isCommitmentFailed:commitment]) {
+        [NSException raise:kTKPromiseCommitmentAlreadyFailedError
+                    format:[NSString stringWithFormat:@"Commitment '%@' has already failed", commitment]];
+    }   
+}
+
+- (void) commitmentFailed {
+    
 }
 
 - (void) attemptToKeep {
     if ([self isKept]) {
-        promiseKeptBlock();
+        if (promiseKeptBlock) promiseKeptBlock();
     }
 }
 

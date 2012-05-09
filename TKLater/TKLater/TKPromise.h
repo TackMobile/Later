@@ -11,6 +11,10 @@
 typedef void (^TKPromiseKeptBlock)();
 typedef void (^TKPromiseFailedBlock)();
 
+#define kTKPromiseCommitmentAlreadyKeptError @"kTKPromiseCommitmentAlreadyKeptError"
+#define kTKPromiseCommitmentAlreadyFailedError @"kTKPromiseCommitmentAlreadyFailedError"
+
+
 @interface TKPromise : NSObject {
     TKPromiseKeptBlock promiseKeptBlock;
     TKPromiseFailedBlock promiseFailedBlock;
