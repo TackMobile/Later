@@ -51,8 +51,8 @@ describe(@"A Promise", ^{
             
             it(@"should know that the promise is not resolved yet", ^{
                 
-                BOOL promiseIsFailed = [promise isResolved];
-                [[theValue(promiseIsFailed) should] equal:theValue(NO)];
+                BOOL promiseIsResolved = [promise isResolved];
+                [[theValue(promiseIsResolved) should] equal:theValue(NO)];
                 
             });
             

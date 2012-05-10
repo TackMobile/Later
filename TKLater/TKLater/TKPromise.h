@@ -16,6 +16,17 @@ typedef void (^TKPromiseResolveBlock)();
 #define kTKPromiseCommitmentAlreadyFailedError @"kTKPromiseCommitmentAlreadyFailedError"
 #define kTKPromiseNoSuchCommitmentError @"kTKPromiseNoSuchCommitmentError"
 
+@class TKPromise;
+
+@protocol TKPromiseDelegate <NSObject>
+@optional
+- (void) promise:(TKPromise *)promise didKeepCommittment:(NSString *)committment;
+- (void) promise:(TKPromise *)promise didFailCommittment:(NSString *)committment;
+- (void) promiseKept:(TKPromise *)promise;
+- (void) promiseDidFail:(TKPromise *)promise;
+- (void) promiseDidResolve:(TKPromise *)promise;
+@end
+
 @interface TKPromise : NSObject {
     TKPromiseKeptBlock promiseKeptBlock;
     TKPromiseFailedBlock promiseFailedBlock;
@@ -30,6 +41,8 @@ typedef void (^TKPromiseResolveBlock)();
            promiseResolvedBlock:(TKPromiseResolveBlock)resolveBlock
                     commitments:(NSString *)aCommitment, ... NS_REQUIRES_NIL_TERMINATION;
 
+@property(nonatomic) id<TKPromiseDelegate> delegate;
+
 - (BOOL) isCommittedTo:(NSString *)commitment;
 - (BOOL) isCommitmentKept:(NSString *)commitment;
 - (BOOL) isCommitmentFailed:(NSString *)commitment;
@@ -43,3 +56,4 @@ typedef void (^TKPromiseResolveBlock)();
 - (void) failCommitment:(NSString *)commitment;
 
 @end
+

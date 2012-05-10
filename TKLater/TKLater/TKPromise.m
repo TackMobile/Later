@@ -18,6 +18,7 @@
 @end
 
 @implementation TKPromise
+@synthesize delegate;
 
 - (id) initWithPromiseKeptBlock:(TKPromiseKeptBlock)pkb
              promiseFailedBlock:(TKPromiseFailedBlock)pfb
@@ -85,6 +86,9 @@
     [self raiseIfAlreadyKept:commitment];
     [self raiseIfAlreadyFailed:commitment];
     [keptCommitments addObject:commitment];
+    if ([delegate respondsToSelector:@selector(promise:didKeepCommittment:)]) {
+        [delegate promise:self didKeepCommittment:commitment];
+    }
     [self attemptToKeep];
 }
 
@@ -93,6 +97,9 @@
     [self raiseIfAlreadyFailed:commitment];
     [self raiseIfAlreadyKept:commitment];
     [failedCommitments addObject:commitment];
+    if ([delegate respondsToSelector:@selector(promise:didFailCommittment:)]) {
+        [delegate promise:self didFailCommittment:commitment];
+    }
     [self commitmentFailed];
 }
 
@@ -122,6 +129,9 @@
     // The assumption is that this is not the first failure, the failure block has already been called.
     if ([self countOfCommitmentsFailed] == 1) { 
         if (promiseFailedBlock) promiseFailedBlock();
+        if ([delegate respondsToSelector:@selector(promiseDidFail:)]) {
+            [delegate promiseDidFail:self];
+        }       
     }
     [self attemptToResolve];
 }
@@ -129,6 +139,9 @@
 - (void) attemptToKeep {
     if ([self isKept]) {
         if (promiseKeptBlock) promiseKeptBlock();
+        if ([delegate respondsToSelector:@selector(promiseKept:)]) {
+            [delegate promiseKept:self];
+        }       
     }
     [self attemptToResolve];
 }
@@ -136,6 +149,9 @@
 - (void) attemptToResolve {
     if ([self isResolved]) {
         if (resolveBlock) resolveBlock();
+        if ([delegate respondsToSelector:@selector(promiseDidResolve:)]) {
+            [delegate promiseDidResolve:self];
+        }       
     }
 }
 

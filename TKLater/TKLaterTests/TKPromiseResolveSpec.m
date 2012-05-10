@@ -2,7 +2,7 @@
 //  TKLaterTests.h
 //  TKLaterTests
 //
-//  Created by Tony Hillerson on 5/7/12.
+//  Created by Tony Hillerson on 5/10/12.
 //  Copyright (c) 2012 Tack Mobile, LLC. All rights reserved.
 //
 
@@ -48,6 +48,8 @@ describe(@"A Promise", ^{
             [promise keepCommitment:promiseB];
             [[promiseResults should] equal:@"kept"];
             [[resolveResults should] equal:@"resolved"];
+            BOOL isResolved = [promise isResolved];
+            [[theValue(isResolved) should] beYes];
         });
         
         it(@"should execute the resolve block when failed", ^{
@@ -55,6 +57,8 @@ describe(@"A Promise", ^{
             [promise failCommitment:promiseB];
             [[promiseResults should] equal:@"failed"];
             [[resolveResults should] equal:@"resolved"];
+            BOOL isResolved = [promise isResolved];
+            [[theValue(isResolved) should] beYes];
         });
         
         it(@"should execute the resolve block when partially kept and complete", ^{
@@ -62,6 +66,8 @@ describe(@"A Promise", ^{
             [promise keepCommitment:promiseA];
             [[promiseResults should] equal:@"failed"];
             [[resolveResults should] equal:@"resolved"];
+            BOOL isResolved = [promise isResolved];
+            [[theValue(isResolved) should] beYes];
         });
 
     });
