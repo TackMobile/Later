@@ -30,6 +30,7 @@ describe(@"A Promise", ^{
                 
                 promise = [[TKPromise alloc] initWithPromiseKeptBlock:NULL
                                                    promiseFailedBlock:NULL
+                                                 promiseResolvedBlock:NULL
                                                           commitments:firstCommitment, secondCommitment, nil];
             
             });
@@ -44,6 +45,13 @@ describe(@"A Promise", ^{
             it(@"should know that the promise is not failed yet", ^{
                 
                 BOOL promiseIsFailed = [promise isFailed];
+                [[theValue(promiseIsFailed) should] equal:theValue(NO)];
+                
+            });
+            
+            it(@"should know that the promise is not resolved yet", ^{
+                
+                BOOL promiseIsFailed = [promise isResolved];
                 [[theValue(promiseIsFailed) should] equal:theValue(NO)];
                 
             });

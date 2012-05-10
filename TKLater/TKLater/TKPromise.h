@@ -10,6 +10,7 @@
 
 typedef void (^TKPromiseKeptBlock)();
 typedef void (^TKPromiseFailedBlock)();
+typedef void (^TKPromiseResolveBlock)();
 
 #define kTKPromiseCommitmentAlreadyKeptError @"kTKPromiseCommitmentAlreadyKeptError"
 #define kTKPromiseCommitmentAlreadyFailedError @"kTKPromiseCommitmentAlreadyFailedError"
@@ -18,6 +19,7 @@ typedef void (^TKPromiseFailedBlock)();
 @interface TKPromise : NSObject {
     TKPromiseKeptBlock promiseKeptBlock;
     TKPromiseFailedBlock promiseFailedBlock;
+    TKPromiseResolveBlock resolveBlock;
     NSMutableArray *commitments;
     NSMutableArray *keptCommitments;
     NSMutableSet *failedCommitments;
@@ -25,6 +27,7 @@ typedef void (^TKPromiseFailedBlock)();
 
 - (id) initWithPromiseKeptBlock:(TKPromiseKeptBlock)promiseKeptBlock
              promiseFailedBlock:(TKPromiseFailedBlock)promiseFailedBlock
+           promiseResolvedBlock:(TKPromiseResolveBlock)resolveBlock
                     commitments:(NSString *)aCommitment, ... NS_REQUIRES_NIL_TERMINATION;
 
 - (BOOL) isCommittedTo:(NSString *)commitment;
@@ -32,6 +35,7 @@ typedef void (^TKPromiseFailedBlock)();
 - (BOOL) isCommitmentFailed:(NSString *)commitment;
 - (BOOL) isKept;
 - (BOOL) isFailed;
+- (BOOL) isResolved;
 - (NSInteger) countOfCommitmentsKept;
 - (NSInteger) countOfCommitmentsFailed;
 - (NSInteger) countOfCommitmentsToKeep;

@@ -27,13 +27,14 @@ describe(@"A Promise", ^{
             
             promise = [[TKPromise alloc] initWithPromiseKeptBlock:promiseKept
                                                promiseFailedBlock:NULL
+                                             promiseResolvedBlock:NULL
                                                       commitments:promiseA, promiseB, nil];
         });
         
         it(@"should execute the block when the promise is kept", ^{
             [promise keepCommitment:promiseA];
             [promise keepCommitment:promiseB];
-            [[expectFutureValue(promiseCompleteValue) shouldEventually] equal:@"Promise kept"];
+            [[promiseCompleteValue should] equal:@"Promise kept"];
         
         });
         

@@ -30,6 +30,7 @@ describe(@"A Promise", ^{
             
             promise = [[TKPromise alloc] initWithPromiseKeptBlock:NULL
                                                promiseFailedBlock:promiseFailed
+                                             promiseResolvedBlock:NULL
                                                       commitments:promiseA, promiseB, nil];
         });
         
@@ -42,7 +43,7 @@ describe(@"A Promise", ^{
         it(@"should execute the failure block only once when more than one commitment fails", ^{
             [promise failCommitment:promiseA];
             [promise failCommitment:promiseB];
-            [[expectFutureValue(promiseCompleteValue) shouldEventually] equal:[NSNumber numberWithInt:1]];
+            [[promiseCompleteValue should] equal:[NSNumber numberWithInt:1]];
             
         });
         

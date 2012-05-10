@@ -22,6 +22,7 @@ describe(@"A Promise", ^{
         beforeEach(^{
             promise = [[TKPromise alloc] initWithPromiseKeptBlock:NULL
                                                promiseFailedBlock:NULL
+                                             promiseResolvedBlock:NULL
                                                       commitments:promiseA, nil];
         });
         

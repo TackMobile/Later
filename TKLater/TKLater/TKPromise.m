@@ -14,12 +14,14 @@
 - (void) raiseIfAlreadyFailed:(NSString *)commitment;
 - (void) raiseIfNeverCommittedTo:(NSString *)commitment;
 - (void) commitmentFailed;
+- (void) attemptToResolve;
 @end
 
 @implementation TKPromise
 
 - (id) initWithPromiseKeptBlock:(TKPromiseKeptBlock)pkb
              promiseFailedBlock:(TKPromiseFailedBlock)pfb
+           promiseResolvedBlock:(TKPromiseResolveBlock)prb
                     commitments:(NSString *)aCommitment, ... {
     if (self = [super init]) {
         commitments = [NSMutableArray array];
@@ -36,6 +38,7 @@
         
         promiseKeptBlock = pkb;
         promiseFailedBlock = pfb;
+        resolveBlock = prb;
     }
     return self;
 
@@ -59,6 +62,10 @@
 
 - (BOOL) isFailed {
     return [failedCommitments count] > 0;
+}
+
+- (BOOL) isResolved {
+    return [self countOfCommitmentsToKeep] == 0;
 }
 
 - (NSInteger) countOfCommitmentsKept {
@@ -116,11 +123,19 @@
     if ([self countOfCommitmentsFailed] == 1) { 
         if (promiseFailedBlock) promiseFailedBlock();
     }
+    [self attemptToResolve];
 }
 
 - (void) attemptToKeep {
     if ([self isKept]) {
         if (promiseKeptBlock) promiseKeptBlock();
+    }
+    [self attemptToResolve];
+}
+
+- (void) attemptToResolve {
+    if ([self isResolved]) {
+        if (resolveBlock) resolveBlock();
     }
 }
 
