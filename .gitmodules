@@ -1,0 +1,3 @@
+[submodule "Kiwi"]
+	path = iOS/Kiwi
+	url = https://github.com/allending/Kiwi.git
