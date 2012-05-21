@@ -31,8 +31,8 @@ typedef void (^TKPromiseResolveBlock)();
     TKPromiseKeptBlock promiseKeptBlock;
     TKPromiseFailedBlock promiseFailedBlock;
     TKPromiseResolveBlock resolveBlock;
-    NSMutableArray *commitments;
-    NSMutableArray *keptCommitments;
+    NSMutableSet *commitments;
+    NSMutableSet *keptCommitments;
     NSMutableSet *failedCommitments;
 }
 

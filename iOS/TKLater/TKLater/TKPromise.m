@@ -25,7 +25,7 @@
            promiseResolvedBlock:(TKPromiseResolveBlock)prb
                     commitments:(NSString *)aCommitment, ... {
     if (self = [super init]) {
-        commitments = [NSMutableArray array];
+        commitments = [NSMutableSet set];
         
         va_list commitmentArgs;
         va_start(commitmentArgs, aCommitment);
@@ -34,7 +34,7 @@
         }
         va_end(commitmentArgs);
         
-        keptCommitments = [NSMutableArray arrayWithCapacity:[commitments count]];
+        keptCommitments = [NSMutableSet setWithCapacity:[commitments count]];
         failedCommitments = [NSMutableSet setWithCapacity:[commitments count]];
         
         promiseKeptBlock = pkb;
