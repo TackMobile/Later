@@ -5,6 +5,6 @@
       location = "container:TKLater/TKLater.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Kiwi/Kiwi.xcodeproj">
+      location = "group:Third Party/Kiwi/Kiwi.xcodeproj">
    </FileRef>
 </Workspace>
