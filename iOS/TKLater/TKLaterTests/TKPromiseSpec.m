@@ -13,16 +13,32 @@ SPEC_BEGIN(TKPromiseSpec)
 
 describe(@"A Promise", ^{
     
+    __block TKPromise *promise = nil;
     it(@"should exist", ^{
         id promiseClass = NSClassFromString(@"TKPromise");
         [[promiseClass should] beNonNil];
     });
     
     describe(@"with its informational API", ^{
+        
+        context(@"with no commitments yet", ^{
+            
+            beforeEach(^{
+                promise = [[TKPromise alloc] initWithPromiseKeptBlock:NULL
+                                       promiseFailedBlock:NULL
+                                     promiseResolvedBlock:NULL
+                                              commitments:nil];
+            });
+            
+            it(@"should not be considered resolved", ^{
+                BOOL resolved = promise.isResolved;
+                [[theValue(resolved) should] beNo];
+            });
+            
+        });
     
         context(@"with two commitments to keep", ^{
             
-            __block TKPromise *promise = nil;
             NSString *firstCommitment = @"first commitment";
             NSString *secondCommitment = @"second commitment";
         

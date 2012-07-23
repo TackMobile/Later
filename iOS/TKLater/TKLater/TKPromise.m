@@ -13,7 +13,10 @@
 
 #import "TKPromise.h"
 
-@interface TKPromise (Private)
+@interface TKPromise () {
+    BOOL promiseResolved;
+}
+
 - (void) attemptToKeep;
 - (void) raiseIfAlreadyResolved;
 - (void) raiseIfAlreadyKept:(NSString *)commitment;
@@ -46,6 +49,8 @@
         promiseKeptBlock = pkb;
         promiseFailedBlock = pfb;
         resolveBlock = prb;
+        
+        promiseResolved = NO;
     }
     return self;
 
@@ -72,7 +77,7 @@
 }
 
 - (BOOL) isResolved {
-    return [self countOfCommitmentsToKeep] == 0;
+    return promiseResolved;
 }
 
 - (NSInteger) countOfCommitmentsKept {
@@ -180,7 +185,8 @@
 }
 
 - (void) attemptToResolve {
-    if ([self isResolved]) {
+    if ([self countOfCommitmentsToKeep] == 0) {
+        promiseResolved = YES;
         if (resolveBlock) resolveBlock();
         if ([delegate respondsToSelector:@selector(promiseDidResolve:)]) {
             [delegate promiseDidResolve:self];
