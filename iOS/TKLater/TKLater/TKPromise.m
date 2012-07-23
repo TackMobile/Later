@@ -88,10 +88,12 @@
 }
 
 - (void) addCommitment:(NSString *)commitment {
-    [self raiseIfAlreadyResolved];
-    [self raiseIfAlreadyKept:commitment];
-    [self raiseIfAlreadyFailed:commitment];
-    [commitments addObject:commitment];
+    @synchronized(self) {
+        [self raiseIfAlreadyResolved];
+        [self raiseIfAlreadyKept:commitment];
+        [self raiseIfAlreadyFailed:commitment];
+        [commitments addObject:commitment];
+    }
 }
 
 - (void) addCommitments:(NSSet *)newCommitments {
@@ -102,25 +104,29 @@
 }
 
 - (void) keepCommitment:(NSString *)commitment {
-    [self raiseIfNeverCommittedTo:commitment];
-    [self raiseIfAlreadyKept:commitment];
-    [self raiseIfAlreadyFailed:commitment];
-    [keptCommitments addObject:commitment];
-    if ([delegate respondsToSelector:@selector(promise:didKeepCommittment:)]) {
-        [delegate promise:self didKeepCommittment:commitment];
+    @synchronized(self) {
+        [self raiseIfNeverCommittedTo:commitment];
+        [self raiseIfAlreadyKept:commitment];
+        [self raiseIfAlreadyFailed:commitment];
+        [keptCommitments addObject:commitment];
+        if ([delegate respondsToSelector:@selector(promise:didKeepCommittment:)]) {
+            [delegate promise:self didKeepCommittment:commitment];
+        }
+        [self attemptToKeep];
     }
-    [self attemptToKeep];
 }
 
 - (void) failCommitment:(NSString *)commitment {
-    [self raiseIfNeverCommittedTo:commitment];
-    [self raiseIfAlreadyFailed:commitment];
-    [self raiseIfAlreadyKept:commitment];
-    [failedCommitments addObject:commitment];
-    if ([delegate respondsToSelector:@selector(promise:didFailCommittment:)]) {
-        [delegate promise:self didFailCommittment:commitment];
+    @synchronized(self) {
+        [self raiseIfNeverCommittedTo:commitment];
+        [self raiseIfAlreadyFailed:commitment];
+        [self raiseIfAlreadyKept:commitment];
+        [failedCommitments addObject:commitment];
+        if ([delegate respondsToSelector:@selector(promise:didFailCommittment:)]) {
+            [delegate promise:self didFailCommittment:commitment];
+        }
+        [self commitmentFailed];
     }
-    [self commitmentFailed];
 }
 
 - (void) raiseIfAlreadyResolved {
