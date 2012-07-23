@@ -84,6 +84,84 @@ describe(@"A Promise", ^{
             
         });
         
+        it(@"should throw an error if attempting to add a commitment when resolved", ^{
+            [promise keepCommitment:promiseA];
+            __block NSString *thirdCommitment = @"third";
+            void(^addCommitmentAttempt)() = ^{
+                [promise addCommitment:thirdCommitment];
+            };
+
+            [[theBlock(addCommitmentAttempt) should] raiseWithName:kTKPromiseAlreadyResolvedError
+                                                        reason:[NSString stringWithFormat:@"Promise already resolved"]];
+        });
+            
+
+        it(@"should throw an error if attempting to add a commitment that's already been kept", ^{
+            [promise addCommitment:promiseB];
+            [promise keepCommitment:promiseA];
+            void(^addCommitmentAttempt)() = ^{
+                [promise addCommitment:promiseA];
+            };
+
+            [[theBlock(addCommitmentAttempt) should] raiseWithName:kTKPromiseCommitmentAlreadyKeptError
+                                                            reason:[NSString stringWithFormat:@"Commitment '%@' has already been kept", promiseA]];
+        });
+            
+
+        it(@"should throw an error if attempting to add a commitment that's already failed", ^{
+            [promise addCommitment:promiseB];
+            [promise failCommitment:promiseA];
+            void(^addCommitmentAttempt)() = ^{
+                [promise addCommitment:promiseA];
+            };
+
+            [[theBlock(addCommitmentAttempt) should] raiseWithName:kTKPromiseCommitmentAlreadyFailedError
+                                                            reason:[NSString stringWithFormat:@"Commitment '%@' has already failed", promiseA]];
+        });
+            
+        it(@"should throw an error if attempting to add a commitments when resolved", ^{
+            [promise keepCommitment:promiseA];
+
+            NSString *thirdCommitment = @"third";
+            NSString *fourthCommitment = @"fourth";
+            NSSet *newCommitments = [NSSet setWithObjects:thirdCommitment, fourthCommitment, nil];
+            void(^addCommitmentAttempt)() = ^{
+                [promise addCommitments:newCommitments];
+            };
+
+            [[theBlock(addCommitmentAttempt) should] raiseWithName:kTKPromiseAlreadyResolvedError
+                                                        reason:[NSString stringWithFormat:@"Promise already resolved"]];
+        });
+            
+        it(@"should throw an error if attempting to batch add a commitment when already kept", ^{
+            [promise addCommitment:promiseB];
+            [promise keepCommitment:promiseA];
+
+            NSString *thirdCommitment = @"third";
+            NSSet *newCommitments = [NSSet setWithObjects:thirdCommitment, promiseA, nil];
+            void(^addCommitmentAttempt)() = ^{
+                [promise addCommitments:newCommitments];
+            };
+
+
+            [[theBlock(addCommitmentAttempt) should] raiseWithName:kTKPromiseCommitmentAlreadyKeptError
+                                                            reason:[NSString stringWithFormat:@"Commitment '%@' has already been kept", promiseA]];
+        });
+        
+        it(@"should throw an error if attempting to batch add a commitment when already failed", ^{
+            [promise addCommitment:promiseB];
+            [promise failCommitment:promiseA];
+
+            NSString *thirdCommitment = @"third";
+            NSSet *newCommitments = [NSSet setWithObjects:thirdCommitment, promiseA, nil];
+            void(^addCommitmentAttempt)() = ^{
+                [promise addCommitments:newCommitments];
+            };
+
+            [[theBlock(addCommitmentAttempt) should] raiseWithName:kTKPromiseCommitmentAlreadyFailedError
+                                                            reason:[NSString stringWithFormat:@"Commitment '%@' has already failed", promiseA]];
+        });
+        
     });
 });
 

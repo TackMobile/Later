@@ -20,6 +20,7 @@ typedef void (^TKPromiseResolveBlock)();
 #define kTKPromiseCommitmentAlreadyKeptError @"kTKPromiseCommitmentAlreadyKeptError"
 #define kTKPromiseCommitmentAlreadyFailedError @"kTKPromiseCommitmentAlreadyFailedError"
 #define kTKPromiseNoSuchCommitmentError @"kTKPromiseNoSuchCommitmentError"
+#define kTKPromiseAlreadyResolvedError @"kTKPromiseAlreadyResolvedError"
 
 @class TKPromise;
 
@@ -59,6 +60,8 @@ typedef void (^TKPromiseResolveBlock)();
 - (NSInteger) countOfCommitmentsToKeep;
 - (void) keepCommitment:(NSString *)commitment;
 - (void) failCommitment:(NSString *)commitment;
+- (void) addCommitment:(NSString *)commitment;
+- (void) addCommitments:(NSSet *)commitments;
 
 @end
 

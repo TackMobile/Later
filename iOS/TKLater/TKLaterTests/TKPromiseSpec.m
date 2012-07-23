@@ -63,6 +63,33 @@ describe(@"A Promise", ^{
                 
             });
             
+            it(@"should be able to add commitments", ^{
+                NSString *thirdCommitment = @"third";
+                [promise addCommitment:thirdCommitment];
+                
+                BOOL committedToThirdCommitment = [promise isCommittedTo:thirdCommitment];
+                [[theValue(committedToThirdCommitment) should] beYes];
+                
+                NSInteger commitmentsToKeep = [promise countOfCommitmentsToKeep];
+                [[theValue(commitmentsToKeep) should] equal:theValue(3)];
+            });
+            
+            it(@"should be able to batch add commitments", ^{
+                NSString *thirdCommitment = @"third";
+                NSString *fourthCommitment = @"fourth";
+                NSSet *newCommitments = [NSSet setWithObjects:thirdCommitment, fourthCommitment, nil];
+                [promise addCommitments:newCommitments];
+                
+                BOOL committedToThirdCommitment = [promise isCommittedTo:thirdCommitment];
+                [[theValue(committedToThirdCommitment) should] beYes];
+                
+                BOOL committedToFourthCommitment = [promise isCommittedTo:fourthCommitment];
+                [[theValue(committedToFourthCommitment) should] beYes];
+                
+                NSInteger commitmentsToKeep = [promise countOfCommitmentsToKeep];
+                [[theValue(commitmentsToKeep) should] equal:theValue(4)];
+            });
+    
             context(@"and one commitment failed", ^{
                 
                 beforeEach(^{

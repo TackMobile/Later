@@ -15,6 +15,7 @@
 
 @interface TKPromise (Private)
 - (void) attemptToKeep;
+- (void) raiseIfAlreadyResolved;
 - (void) raiseIfAlreadyKept:(NSString *)commitment;
 - (void) raiseIfAlreadyFailed:(NSString *)commitment;
 - (void) raiseIfNeverCommittedTo:(NSString *)commitment;
@@ -86,6 +87,20 @@
     return [commitments count] - [keptCommitments count] - [failedCommitments count];
 }
 
+- (void) addCommitment:(NSString *)commitment {
+    [self raiseIfAlreadyResolved];
+    [self raiseIfAlreadyKept:commitment];
+    [self raiseIfAlreadyFailed:commitment];
+    [commitments addObject:commitment];
+}
+
+- (void) addCommitments:(NSSet *)newCommitments {
+    // Add these one at a time to get error coverage
+    [newCommitments enumerateObjectsUsingBlock:^(NSString *commitment, BOOL *stop) {
+        [self addCommitment:commitment];
+    }];
+}
+
 - (void) keepCommitment:(NSString *)commitment {
     [self raiseIfNeverCommittedTo:commitment];
     [self raiseIfAlreadyKept:commitment];
@@ -106,6 +121,13 @@
         [delegate promise:self didFailCommittment:commitment];
     }
     [self commitmentFailed];
+}
+
+- (void) raiseIfAlreadyResolved {
+    if ([self isResolved]) {
+        [NSException raise:kTKPromiseAlreadyResolvedError
+                    format:[NSString stringWithFormat:@"Promise already resolved"]];
+    }
 }
 
 - (void) raiseIfAlreadyKept:(NSString *)commitment {
