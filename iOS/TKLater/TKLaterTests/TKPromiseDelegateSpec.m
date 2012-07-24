@@ -22,8 +22,8 @@ describe(@"A Promise", ^{
         
         beforeEach(^{
             mockDelegate = [KWMock mockForProtocol:@protocol(TKPromiseDelegate)];
-            [mockDelegate stub:@selector(promise:didKeepCommittment:)];
-            [mockDelegate stub:@selector(promise:didFailCommittment:)];
+            [mockDelegate stub:@selector(promise:didKeepCommitment:)];
+            [mockDelegate stub:@selector(promise:didFailCommitment:)];
             [mockDelegate stub:@selector(promiseKept:)];
             [mockDelegate stub:@selector(promiseDidFail:)];
             [mockDelegate stub:@selector(promiseDidResolve:)];
@@ -37,21 +37,21 @@ describe(@"A Promise", ^{
         });
         
         it(@"should call the delegate when a commitment is kept", ^{
-            [[mockDelegate should] receive:@selector(promise:didKeepCommittment:)
+            [[mockDelegate should] receive:@selector(promise:didKeepCommitment:)
                              withArguments:promise, promiseA];
             [promise keepCommitment:promiseA];
         });
         
         it(@"should call the delegate when a commitment fails", ^{
-            [[mockDelegate should] receive:@selector(promise:didFailCommittment:)
+            [[mockDelegate should] receive:@selector(promise:didFailCommitment:)
                              withArguments:promise, promiseA];
             [promise failCommitment:promiseA];
         });
         
         it(@"should call the delegate when a promise is kept", ^{
-            [[mockDelegate should] receive:@selector(promise:didKeepCommittment:)
+            [[mockDelegate should] receive:@selector(promise:didKeepCommitment:)
                              withArguments:promise, promiseA];
-            [[mockDelegate should] receive:@selector(promise:didKeepCommittment:)
+            [[mockDelegate should] receive:@selector(promise:didKeepCommitment:)
                              withArguments:promise, promiseB];
             [[mockDelegate should] receive:@selector(promiseKept:)
                              withArguments:promise];
@@ -62,9 +62,9 @@ describe(@"A Promise", ^{
         });
         
         it(@"should call the delegate when a promise fails", ^{
-            [[mockDelegate should] receive:@selector(promise:didFailCommittment:)
+            [[mockDelegate should] receive:@selector(promise:didFailCommitment:)
                              withArguments:promise, promiseA];
-            [[mockDelegate should] receive:@selector(promise:didKeepCommittment:)
+            [[mockDelegate should] receive:@selector(promise:didKeepCommitment:)
                              withArguments:promise, promiseB];
             [[mockDelegate should] receive:@selector(promiseDidFail:)
                              withArguments:promise];

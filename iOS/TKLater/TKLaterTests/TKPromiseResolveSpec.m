@@ -33,7 +33,7 @@ describe(@"A Promise", ^{
                 promiseResults = @"failed";
             };
             
-            TKPromiseResolveBlock resolveBlock = ^{
+            TKPromiseResolvedBlock resolveBlock = ^{
                 resolveResults = @"resolved";
             };
             

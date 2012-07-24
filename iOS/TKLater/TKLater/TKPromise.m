@@ -31,7 +31,7 @@
 
 - (id) initWithPromiseKeptBlock:(TKPromiseKeptBlock)pkb
              promiseFailedBlock:(TKPromiseFailedBlock)pfb
-           promiseResolvedBlock:(TKPromiseResolveBlock)prb
+           promiseResolvedBlock:(TKPromiseResolvedBlock)prb
                     commitments:(NSString *)aCommitment, ... {
     if (self = [super init]) {
         commitments = [NSMutableSet set];
@@ -114,8 +114,8 @@
         [self raiseIfAlreadyKept:commitment];
         [self raiseIfAlreadyFailed:commitment];
         [keptCommitments addObject:commitment];
-        if ([delegate respondsToSelector:@selector(promise:didKeepCommittment:)]) {
-            [delegate promise:self didKeepCommittment:commitment];
+        if ([delegate respondsToSelector:@selector(promise:didKeepCommitment:)]) {
+            [delegate promise:self didKeepCommitment:commitment];
         }
         [self attemptToKeep];
     }
@@ -127,8 +127,8 @@
         [self raiseIfAlreadyFailed:commitment];
         [self raiseIfAlreadyKept:commitment];
         [failedCommitments addObject:commitment];
-        if ([delegate respondsToSelector:@selector(promise:didFailCommittment:)]) {
-            [delegate promise:self didFailCommittment:commitment];
+        if ([delegate respondsToSelector:@selector(promise:didFailCommitment:)]) {
+            [delegate promise:self didFailCommitment:commitment];
         }
         [self commitmentFailed];
     }

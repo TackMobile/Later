@@ -15,7 +15,7 @@
 
 typedef void (^TKPromiseKeptBlock)();
 typedef void (^TKPromiseFailedBlock)();
-typedef void (^TKPromiseResolveBlock)();
+typedef void (^TKPromiseResolvedBlock)();
 
 #define kTKPromiseCommitmentAlreadyKeptError @"kTKPromiseCommitmentAlreadyKeptError"
 #define kTKPromiseCommitmentAlreadyFailedError @"kTKPromiseCommitmentAlreadyFailedError"
@@ -26,8 +26,8 @@ typedef void (^TKPromiseResolveBlock)();
 
 @protocol TKPromiseDelegate <NSObject>
 @optional
-- (void) promise:(TKPromise *)promise didKeepCommittment:(NSString *)committment;
-- (void) promise:(TKPromise *)promise didFailCommittment:(NSString *)committment;
+- (void) promise:(TKPromise *)promise didKeepCommitment:(NSString *)commitment;
+- (void) promise:(TKPromise *)promise didFailCommitment:(NSString *)commitment;
 - (void) promiseKept:(TKPromise *)promise;
 - (void) promiseDidFail:(TKPromise *)promise;
 - (void) promiseDidResolve:(TKPromise *)promise;
@@ -36,7 +36,7 @@ typedef void (^TKPromiseResolveBlock)();
 @interface TKPromise : NSObject {
     TKPromiseKeptBlock promiseKeptBlock;
     TKPromiseFailedBlock promiseFailedBlock;
-    TKPromiseResolveBlock resolveBlock;
+    TKPromiseResolvedBlock resolveBlock;
     NSMutableSet *commitments;
     NSMutableSet *keptCommitments;
     NSMutableSet *failedCommitments;
@@ -44,7 +44,7 @@ typedef void (^TKPromiseResolveBlock)();
 
 - (id) initWithPromiseKeptBlock:(TKPromiseKeptBlock)promiseKeptBlock
              promiseFailedBlock:(TKPromiseFailedBlock)promiseFailedBlock
-           promiseResolvedBlock:(TKPromiseResolveBlock)resolveBlock
+           promiseResolvedBlock:(TKPromiseResolvedBlock)resolveBlock
                     commitments:(NSString *)aCommitment, ... NS_REQUIRES_NIL_TERMINATION;
 
 @property(nonatomic) id<TKPromiseDelegate> delegate;
