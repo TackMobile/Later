@@ -137,28 +137,28 @@
 - (void) raiseIfAlreadyResolved {
     if ([self isResolved]) {
         [NSException raise:kTKPromiseAlreadyResolvedError
-                    format:[NSString stringWithFormat:@"Promise already resolved"]];
+                    format:@"Promise already resolved"];
     }
 }
 
 - (void) raiseIfAlreadyKept:(NSString *)commitment {
     if ([self isCommitmentKept:commitment]) {
         [NSException raise:kTKPromiseCommitmentAlreadyKeptError
-                    format:[NSString stringWithFormat:@"Commitment '%@' has already been kept", commitment]];
+                    format:@"Commitment '%@' has already been kept", commitment];
     }
 }
 
 - (void) raiseIfAlreadyFailed:(NSString *)commitment {
     if ([self isCommitmentFailed:commitment]) {
         [NSException raise:kTKPromiseCommitmentAlreadyFailedError
-                    format:[NSString stringWithFormat:@"Commitment '%@' has already failed", commitment]];
+                    format:@"Commitment '%@' has already failed", commitment];
     }   
 }
 
 - (void) raiseIfNeverCommittedTo:(NSString *)commitment {
     if (![self isCommittedTo:commitment]) {
         [NSException raise:kTKPromiseNoSuchCommitmentError
-                    format:[NSString stringWithFormat:@"Never committed to '%@'", commitment]];
+                    format:@"Never committed to '%@'", commitment];
     }
 }
 
