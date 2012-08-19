@@ -27,7 +27,7 @@
 @end
 
 @implementation TKPromise
-@synthesize delegate;
+@synthesize delegate, commitmentKeptBlock;
 
 - (id) initWithPromiseKeptBlock:(TKPromiseKeptBlock)pkb
              promiseFailedBlock:(TKPromiseFailedBlock)pfb
@@ -114,6 +114,7 @@
         [self raiseIfAlreadyKept:commitment];
         [self raiseIfAlreadyFailed:commitment];
         [keptCommitments addObject:commitment];
+        if (commitmentKeptBlock) commitmentKeptBlock(commitment);
         if ([delegate respondsToSelector:@selector(promise:didKeepCommitment:)]) {
             [delegate promise:self didKeepCommitment:commitment];
         }
