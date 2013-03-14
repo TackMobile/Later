@@ -64,6 +64,7 @@ typedef void (^TKCommitmentKeptBlock)(NSString *commitment);
 - (void) failCommitment:(NSString *)commitment;
 - (void) addCommitment:(NSString *)commitment;
 - (void) addCommitments:(NSSet *)commitments;
+- (void) failAllCommitments;
 
 @end
 

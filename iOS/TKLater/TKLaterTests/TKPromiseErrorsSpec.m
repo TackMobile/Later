@@ -94,7 +94,17 @@ describe(@"A Promise", ^{
             [[theBlock(addCommitmentAttempt) should] raiseWithName:kTKPromiseAlreadyResolvedError
                                                         reason:[NSString stringWithFormat:@"Promise already resolved"]];
         });
+        
+        it(@"should throw an error if attempting to fail all commitments when resolved", ^{
+            [promise keepCommitment:promiseA];
             
+            void(^failAllAttempt)() = ^{
+                [promise failAllCommitments];
+            };
+            
+            [[theBlock(failAllAttempt) should] raiseWithName:kTKPromiseAlreadyResolvedError
+                                                      reason:[NSString stringWithFormat:@"Promise already resolved"]];
+        });
 
         it(@"should throw an error if attempting to add a commitment that's already been kept", ^{
             [promise addCommitment:promiseB];
@@ -119,7 +129,7 @@ describe(@"A Promise", ^{
                                                             reason:[NSString stringWithFormat:@"Commitment '%@' has already failed", promiseA]];
         });
             
-        it(@"should throw an error if attempting to add a commitments when resolved", ^{
+        it(@"should throw an error if attempting to add a commitment when resolved", ^{
             [promise keepCommitment:promiseA];
 
             NSString *thirdCommitment = @"third";

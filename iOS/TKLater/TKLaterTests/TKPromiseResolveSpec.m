@@ -70,6 +70,13 @@ describe(@"A Promise", ^{
             [[theValue(isResolved) should] beYes];
         });
 
+        it(@"should execute the resolve block when failing all", ^{
+            [promise failAllCommitments];
+            [[promiseResults should] equal:@"failed"];
+            [[resolveResults should] equal:@"resolved"];
+            BOOL isResolved = [promise isResolved];
+            [[theValue(isResolved) should] beYes];
+        });
     });
 });
 

@@ -135,6 +135,29 @@
     }
 }
 
+- (void) failAllCommitments {
+    [self raiseIfAlreadyResolved];
+    @synchronized(self) {
+        NSUInteger previousFailCount = [self countOfCommitmentsFailed];
+        [commitments enumerateObjectsUsingBlock:^(NSString *commitment, BOOL *stop) {
+            if ([delegate respondsToSelector:@selector(promise:didFailCommitment:)]) {
+                [delegate promise:self didFailCommitment:commitment];
+            }
+            [failedCommitments addObject:commitment];
+        }];
+
+        // if we had already failed a commitment, don't call the fail block again
+        if (previousFailCount == 0) {
+            if (promiseFailedBlock) promiseFailedBlock();
+            if ([delegate respondsToSelector:@selector(promiseDidFail:)]) {
+                [delegate promiseDidFail:self];
+            }
+        }
+
+        [self attemptToResolve];
+    }
+}
+
 - (void) raiseIfAlreadyResolved {
     if ([self isResolved]) {
         [NSException raise:kTKPromiseAlreadyResolvedError

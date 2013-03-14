@@ -22,6 +22,7 @@ describe(@"A Promise", ^{
         
         beforeEach(^{
             __block NSUInteger callCount = 0;
+            promiseCompleteValue = nil;
 
             TKPromiseFailedBlock promiseFailed = ^{
                 callCount++;
@@ -45,6 +46,17 @@ describe(@"A Promise", ^{
             [promise failCommitment:promiseB];
             [[promiseCompleteValue should] equal:[NSNumber numberWithInt:1]];
             
+        });
+        
+        it(@"should execute the failure block when failing all commitments", ^{
+            [promise failAllCommitments];
+            [[promiseCompleteValue should] equal:[NSNumber numberWithInt:1]];
+        });
+        
+        it(@"should execute the failure block only once when failing all commitments", ^{
+            [promise failCommitment:promiseA];
+            [promise failAllCommitments];
+            [[promiseCompleteValue should] equal:[NSNumber numberWithInt:1]];
         });
         
     });
