@@ -54,7 +54,6 @@ describe(@"A Promise", ^{
         });
         
         it(@"should execute the failure block only once when failing all commitments", ^{
-            [promise failCommitment:promiseA];
             [promise failAllCommitments];
             [[promiseCompleteValue should] equal:[NSNumber numberWithInt:1]];
         });

@@ -172,6 +172,17 @@ describe(@"A Promise", ^{
                                                             reason:[NSString stringWithFormat:@"Commitment '%@' has already failed", promiseA]];
         });
         
+        it(@"should throw an error if attempting to fail all commitments when already resolved", ^{
+            [promise failCommitment:promiseA];
+
+            void(^failCommitmentAttempt)() = ^{
+                [promise failAllCommitments];
+            };
+
+            [[theBlock(failCommitmentAttempt) should] raiseWithName:kTKPromiseAlreadyResolvedError
+                                                             reason:@"Promise already resolved"];
+        });
+        
     });
 });
 

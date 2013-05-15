@@ -94,9 +94,9 @@
 
 - (void) addCommitment:(NSString *)commitment {
     @synchronized(self) {
-        [self raiseIfAlreadyResolved];
         [self raiseIfAlreadyKept:commitment];
         [self raiseIfAlreadyFailed:commitment];
+        [self raiseIfAlreadyResolved];
         [commitments addObject:commitment];
     }
 }
@@ -209,7 +209,7 @@
 }
 
 - (void) attemptToResolve {
-    if ([self countOfCommitmentsToKeep] == 0) {
+    if (!promiseResolved && ([self countOfCommitmentsToKeep] == 0 || [self countOfCommitmentsFailed] == 1)) {
         promiseResolved = YES;
         if (resolveBlock) resolveBlock();
         if ([delegate respondsToSelector:@selector(promiseDidResolve:)]) {

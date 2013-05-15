@@ -54,7 +54,6 @@ describe(@"A Promise", ^{
         
         it(@"should execute the resolve block when failed", ^{
             [promise failCommitment:promiseA];
-            [promise failCommitment:promiseB];
             [[promiseResults should] equal:@"failed"];
             [[resolveResults should] equal:@"resolved"];
             BOOL isResolved = [promise isResolved];
