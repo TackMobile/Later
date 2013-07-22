@@ -48,7 +48,7 @@ typedef void (^TKCommitmentKeptBlock)(NSString *commitment);
            promiseResolvedBlock:(TKPromiseResolvedBlock)resolveBlock
                     commitments:(NSString *)aCommitment, ... NS_REQUIRES_NIL_TERMINATION;
 
-@property(nonatomic) id<TKPromiseDelegate> delegate;
+@property(nonatomic, weak) id<TKPromiseDelegate> delegate;
 @property(nonatomic, copy) TKCommitmentKeptBlock commitmentKeptBlock;
 
 - (BOOL) isCommittedTo:(NSString *)commitment;
